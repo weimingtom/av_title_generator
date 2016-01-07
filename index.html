@@ -1,0 +1,29 @@
+<script src="./jquery.min.js"></script>
+<script>
+    var particle = ["の", "に", "を", "が", "だけ", "て", "は"];
+    $.ajax({
+        url: "./datas/words.csv",
+        dataType: "json",
+        success: function(data) {
+
+            for (var i = 0; i < 100; i++) {
+                var tmp = $("<p></p>");
+                var num = 0;
+                tmp.text(output(data));
+                $("#title").append(tmp);
+            }
+            console.log("finish");
+        }
+    })
+
+    function output(data) {
+        var title = "";
+        var num = Math.floor(Math.random() * 3) + 3;
+        for (var i = 0; i < num; i++) {
+            title += data[Math.floor(data.length * Math.random())];
+            if((Math.random() < 0.7)&&(i < num - 1 ))title += particle[Math.floor(Math.random() * particle.length)];
+        }
+        return title;
+    }
+</script>
+<div id="title"></div>
