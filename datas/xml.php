@@ -13,21 +13,33 @@ $rss = $xmlurl.$opt.$sort.$offset;
 $xml = simplexml_load_file($rss);
 
 
-$filename = "./title.csv";
+$filename = "./name.csv";
 $outputdata = "";
 
 for($i = 1;$i < 10001;$i = $i + 100){
+//for($i = 1;$i < 100;$i = $i + 100){
     $offset = "&offset=".$i;
     $rss = $xmlurl.$opt.$sort.$offset;
     $xml = simplexml_load_file($rss);
 
     for($j = 0;$j < 100;$j++){
-        $data = $xml->result->items->item[$j]->title;
+        echo "■";
+        $data = $xml->result->items->item[$j]->iteminfo->actress;//->title;
+
+        for($k = 0;$k < count($data) ;$k++){
+//            var_dump($data[$k]);
+
+            if(!strpos($data[$k]->id,"_ruby")){
+                if(!strpos($data[$k]->id,"_classify")){
+                    echo $data[$k]->name;
+                    $outputdata = $outputdata.$data[$k]->name."\r\n";
+                }
+            }
+        }
 
         echo $data;
-        echo "<br>";
+        echo "<br><br>";
 
-        $outputdata = $outputdata.$data."\r\n";
 
     }
 }
