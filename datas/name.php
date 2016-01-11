@@ -13,8 +13,8 @@ $rss = $xmlurl.$opt.$sort.$offset;
 $xml = simplexml_load_file($rss);
 
 
-$filename = "./name.csv";
-$outputdata = "";
+$filename = "./name_data.csv";
+$outputdata = "[";
 
 for($i = 1;$i < 10001;$i = $i + 100){
 //for($i = 1;$i < 100;$i = $i + 100){
@@ -32,7 +32,7 @@ for($i = 1;$i < 10001;$i = $i + 100){
             if(!strpos($data[$k]->id,"_ruby")){
                 if(!strpos($data[$k]->id,"_classify")){
                     echo $data[$k]->name;
-                    $outputdata = $outputdata.$data[$k]->name."\r\n";
+                    $outputdata = $outputdata.'"'.$data[$k]->name.'",';
                 }
             }
         }
@@ -43,6 +43,7 @@ for($i = 1;$i < 10001;$i = $i + 100){
 
     }
 }
+$outputdata = $outputdata.'""]';
 file_put_contents($filename,$outputdata);
 
 ?>
