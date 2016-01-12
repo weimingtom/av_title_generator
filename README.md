@@ -10,6 +10,10 @@ words.csv:meacbout.jsonから単語だけ抽出してjsで配列として使え�
 
 keywords.csv:人気タイトル１０００件のキーワード
 
+keywords_data.csv: keywords.csvをjs配列に
+
 -------------
 
 name.csv:人気タイトル１００００件の女優名
+
+name_data.csv: name.csvをjs配列に
